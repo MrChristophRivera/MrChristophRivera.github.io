@@ -53,6 +53,11 @@ baseurl: ""
 # !! You don't need to change any of the configuration flags below !!
 #
 
+# I added this below to add an archive. 
+pages_list:       
+  About: '/about'
+  Archive: '/archive'
+
 markdown: redcarpet
 highlighter: pygments
 permalink: /:title/

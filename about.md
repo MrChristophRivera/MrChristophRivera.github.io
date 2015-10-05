@@ -13,4 +13,4 @@ I've had an unusual career: I trained as a medical doctor and then a biochemist 
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[chris.richard.rivera@gmail.com](mailto:chris.richard.rivera@gmail.com)

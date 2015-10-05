@@ -1,6 +1,6 @@
 ---
 layout: post
-title: This is an initial blog post
+title: Classifying Websites with GoGuardian
 published: true
 ---
 

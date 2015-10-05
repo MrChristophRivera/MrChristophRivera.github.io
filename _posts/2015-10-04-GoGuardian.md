@@ -11,6 +11,6 @@ This extension records the sites that students visit. It allows for teachers and
 
 Slides are located [here](https://speakerdeck.com/christopherrivera/insight-project). 
 
-<script async class="speakerdeck-embed" data-id="189122d9cebe47a2abb58c4709814af9" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
 ### The problem.
 Being able to classify websites is crucial to GoGuardians mission.

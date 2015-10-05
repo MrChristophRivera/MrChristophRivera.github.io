@@ -5,4 +5,8 @@ published: true
 ---
 
 
-This is a test blog post. It means nothing currently. 
+
+ 
+# Classifiying Websites with GoGuardian. 
+ 
+For my [Insight Data Science](http://insightdatascience.com) Project for the Fall Session of 2015 I opted to work with [GoGuardian](https://www.goguardian.com), a rapidly expanding educational startup based in Los Angeles. This startup developes a Chrome extension to be used on student chromebooks.

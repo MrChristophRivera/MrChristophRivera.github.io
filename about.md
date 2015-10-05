@@ -2,13 +2,14 @@
 layout: page
 title: About
 permalink: /about/
+published: true
 ---
 
-Some information about you!
+
+Biochemist | Systems and Sythetic Biologist | Data Scientist
 
 ### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I've had an unusual career: I trained as a medical doctor and then a biochemist at UC San Francisco. Following that, I did a postdoc at UC San Diego in the fields of sythetic and Systems biology. Finally I've slowly been morphing into a data scientist. 
 
 ### Contact me
 

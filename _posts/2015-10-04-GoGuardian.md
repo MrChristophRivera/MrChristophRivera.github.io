@@ -17,4 +17,4 @@ Being able quickly to classify websites is crucial to GoGuardian’s business. T
 ### The approach. 
 GoGuardian previously had another company classify approximately 2.6 million different host websites into 16 primary and 70 secondary categories. These categories include labels such as News, Timewasting, and Social. GoGuardian was pretty open to several different approaches to tackling this problem and suggested that I might either use a unsupervised learning approach and cluster websites based upon their text or that I could use their previously classified websites as a starting point to train a supervised learner. I opted for the latter. 
 
-To begin, I obtained the list of the 2.6 millions different previously classified website. 
+To begin, I obtained the list of the 2.6 millions different previously classified websites.  

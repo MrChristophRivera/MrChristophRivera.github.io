@@ -15,4 +15,6 @@ This extension monitors the websites that students visit and classifies them int
 Being able quickly to classify websites is crucial to GoGuardian’s business. To do this, they have been using two complementary approaches, one that uses a lookup table of previously classified websites and another that searches for keywords. While both methods have proved to be effective, the web is [massive](http://www.internetlivestats.com/total-number-of-websites/) and students are immensely curious. To be able to scale, GoGuardian has decided to develop its own house machine learning classifiers for classing the web and this is the task that I agreed to work on in collaboration with GoGuardian.  
 
 ### The approach. 
-GoGuardian previously had 
+GoGuardian previously had another company classify approximately 2.6 million different host websites into 16 primary and 70 secondary categories. These categories include labels such as News, Timewasting, and Social. GoGuardian was pretty open to several different approaches to tackling this problem and suggested that I might either use a unsupervised learning approach and cluster websites based upon their text or that I could use their previously classified websites as a starting point to train a supervised learner. I opted for the latter. 
+
+To begin, I obtained the list of the 2.6 millions different previously classified website. 

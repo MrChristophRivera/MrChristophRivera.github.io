@@ -22,4 +22,13 @@ GoGuardian previously had another company classify approximately 2.6 million dif
 #### Url Selection and Processing. 
 To begin, I obtained the list of 2.6 million previously classified websites. These websites had been classified into 15 primary categories, and 69 secondary categories. The majority of the websties belonged to a single primary category; to simplify the problem, I subset the list to include urls that belonged to only one category. 
 
-From the remaining ~2.3 million urls, I selected a subset of the urls. I wrote a python scripts using the Requests http and the multiproccesing modules to download the HTMLs documents onto an AWS cluster.
+From the remaining ~2.3 million urls, I selected a subset of the urls. I wrote python scripts using the excellent [Requests](http://docs.python-requests.org/en/latest/) and multiproccesing modules to access the urls and download the resulting HTML documents as a text file onto an AWS 16 node cluster. I downloaded approximately 50,000 websites. 
+
+Here is the distribution of the documents. 
+
+I employed [Beautiful Soup](http://www.crummy.com/software/BeautifulSoup/) (it is indeed beautiful) to parse the HTML documents and extract text belonging to the paragraph, title, link, image, header and metadata tags. Using my functions, I also counted the number of each of these tags with in the document. 
+
+Using [SQL Alchemy](http://www.sqlalchemy.org), I inserted the scraped text along with the tag and word counts into an mysql database for storage. 
+
+#### Machine Learning: Its fun to learn. 
+

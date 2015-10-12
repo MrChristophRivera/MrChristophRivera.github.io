@@ -9,6 +9,7 @@ published: true
 
 
 
+
 For my [Insight Data Science](http://insightdatascience.com) Project for the Fall Session of 2015 I opted to work with [GoGuardian](https://www.goguardian.com), a rapidly expanding educational startup based in Los Angeles. This startup develops a Chrome extension that is installed onto student chrome books. 
 
 Slides are located [here](https://speakerdeck.com/christopherrivera/insight-project). 
@@ -26,7 +27,7 @@ To begin, I obtained the list of 2.6 million previously classified websites. The
  
 From the remaining ~2.3 million urls, I selected a subset of the urls. I wrote python scripts using the excellent [Requests](http://docs.python-requests.org/en/latest/) and multiprocessing modules to access the urls and download the resulting HTML documents as a text file onto an AWS 16 node cluster. I downloaded approximately 50,000 websites. 
  
-Here is the distribution of the ![The initial count.]({{site.baseurl}}/images/DocumentCount.pdf). 
+Here is the distribution of the documents that I loaded by category.  ![The initial count.]({{site.baseurl}}/images/DocumentCount.pdf). 
  
 I employed [Beautiful Soup](http://www.crummy.com/software/BeautifulSoup/) (it is indeed beautiful) to parse the HTML documents and extract text belonging to the paragraph, title, link, image, header and metadata tags. I concatenated the text from the different tags into one string and removed all punctuation and numbers. Using my functions, I also counted the number of each of these tags with in the document. 
  

@@ -8,6 +8,7 @@ published: true
 
 
 
+
 For my [Insight Data Science](http://insightdatascience.com) Project for the Fall Session of 2015 I opted to work with [GoGuardian](https://www.goguardian.com), a rapidly expanding educational startup based in Los Angeles. This startup develops a Chrome extension that is installed onto student chrome books. 
 
 Slides are located [here](https://speakerdeck.com/christopherrivera/insight-project). 
@@ -21,15 +22,20 @@ Being able to quickly classify websites is crucial to GoGuardian’s business. T
 GoGuardian previously had another company classify approximately 2.6 million different host websites into 16 primary and 70 secondary categories. These categories include labels such as News, Timewasting, and Social. GoGuardian was pretty open to several different approaches for tackling this problem and suggested that I might use either a unsupervised learning approach by clustering websites based on their text or that I could use their previously classified websites as a starting point to train a supervised learner. I opted for the latter. 
 
 #### Url Selection and Processing. 
-To begin, I obtained the list of 2.6 million previously classified websites. These websites had been classified into 15 primary categories, and 69 secondary categories. The majority of the websties belonged to a single primary category; to simplify the problem, I subset the list to include urls that belonged to only one category. 
+To begin, I obtained the list of 2.6 million previously classified websites. These websites had been classified into 15 primary categories, and 69 secondary categories. The majority of the websites belonged to a single primary category; to simplify the problem, I subset the list to include urls that belonged to only one category. 
+ 
+From the remaining ~2.3 million urls, I selected a subset of the urls. I wrote python scripts using the excellent [Requests](http://docs.python-requests.org/en/latest/) and multiprocessing modules to access the urls and download the resulting HTML documents as a text file onto an AWS 16 node cluster. I downloaded approximately 50,000 websites. 
+ 
+Here is the distribution of the categories. 
+ 
+ 
+I employed [Beautiful Soup](http://www.crummy.com/software/BeautifulSoup/) (it is indeed beautiful) to parse the HTML documents and extract text belonging to the paragraph, title, link, image, header and metadata tags. I concatenated the text from the different tags into one string and removed all punctuation and numbers. Using my functions, I also counted the number of each of these tags with in the document. 
+ 
+Using [SQL Alchemy](http://www.sqlalchemy.org), I inserted the scraped text along with the tag and word counts into a mysql database for storage and easy access. 
+ 
+#### Training the Machine Learning algorithms. 
+I employed pandas to access the and manipulate it. Plotting the distribution of the word length indicated that many of downloaded documents had fewer than 5 words after parsing. To increase the information content, I selected for documents that had greater than or equal to 5 words. To control for unbalanced classes, I also sub-selected for a smaller subset of documents. 
+ 
+Following sub-selection, I used sci-kit learn functions to split the remaining documents into 75% training and 25% test set; the test set were never touched by the algorithm until testing. I used the sklearn CountVectorizer function to tokenize the document strings and count the word frequencies. I used to the TfidfTransformer function to normalize the word counts. 
 
-From the remaining ~2.3 million urls, I selected a subset of the urls. I wrote python scripts using the excellent [Requests](http://docs.python-requests.org/en/latest/) and multiproccesing modules to access the urls and download the resulting HTML documents as a text file onto an AWS 16 node cluster. I downloaded approximately 50,000 websites. 
-
-Here is the distribution of the ![]({{site.baseurl}}/). 
-
-
-I employed [Beautiful Soup](http://www.crummy.com/software/BeautifulSoup/) (it is indeed beautiful) to parse the HTML documents and extract text belonging to the paragraph, title, link, image, header and metadata tags. Using my functions, I also counted the number of each of these tags with in the document. 
-
-Using [SQL Alchemy](http://www.sqlalchemy.org), I inserted the scraped text along with the tag and word counts into an mysql database for storage. 
-
-#### Machine Learning: Its fun to learn.
+The documents had a combined word vocabulary totalling ~ 300,000 word. To reduce the feature complexity (for increasing computational performance, and accuracy), I performed ChiSquares on the word matrix and selected the k-best words, where k-best is the most statistically significant. 

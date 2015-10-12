@@ -28,7 +28,6 @@ From the remaining ~2.3 million urls, I selected a subset of the urls. I wrote p
  
 Here is the distribution of the categories. 
  
- 
 I employed [Beautiful Soup](http://www.crummy.com/software/BeautifulSoup/) (it is indeed beautiful) to parse the HTML documents and extract text belonging to the paragraph, title, link, image, header and metadata tags. I concatenated the text from the different tags into one string and removed all punctuation and numbers. Using my functions, I also counted the number of each of these tags with in the document. 
  
 Using [SQL Alchemy](http://www.sqlalchemy.org), I inserted the scraped text along with the tag and word counts into a mysql database for storage and easy access. 
@@ -40,7 +39,6 @@ I employed pandas to access and manipulate the downloaded text strings. Plotting
 Following sub-selection, I employed the sci-kit learn functions to split the remaining documents into a 75% training and 25% test set; the test set were never touched by the algorithm until testing. I used the sklearn CountVectorizer function to tokenize the document strings, remove stop words and count the word frequencies. I used to the TfidfTransformer function to normalize the word counts across the different categories. 
 
 The number of unique words in the combined text was quite large, totaling >300,000. To reduce the feature complexity (which helped increase computational performance  
-
 
 The documents had a combined word vocabulary totaling ~ 300,000 word. To reduce the feature complexity (for increasing computational performance, and accuracy), I performed Chi Squared tests on the word matrix to select the k-best most statistically significant words. I then used the transformed data set to train a series of models, Stochastic Gradient Descent Support Vector Classifier, Naïve Bayes and random forest. For each class of model I varied either the regularization parameter or the number of trees (in the case of the random forest). I used the sklearn pipeline objects to facilitate rapid training and cross validation of the models using a series of hyper-parameters. For this I used 10 fold cross validation. 
 

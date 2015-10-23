@@ -36,12 +36,13 @@ Using [SQL Alchemy](http://www.sqlalchemy.org), I inserted the scraped text alon
  
 #### Training the Machine Learning algorithms. 
 
-I employed pandas to access and manipulate the downloaded text strings. Plotting the distribution of the word length indicated that many of downloaded documents had fewer than 5 words after parsing. To increase the information content, I selected for documents that had greater than or equal to 5 words and, to control for unbalanced classes, I also sub-selected for a smaller subset of documents. 
- 
-Following sub-selection, I employed the sci-kit learn functions to split the remaining documents into a 75% training and 25% test set; the test set were never touched by the algorithm until testing. I used the sklearn CountVectorizer function to tokenize the document strings, remove stop words and count the word frequencies. I used to the TfidfTransformer function to normalize the word counts across the different categories. 
+I employed pandas to access and manipulate the downloaded text strings. Plotting the distribution of the word length indicated that many of downloaded documents had fewer than 5 words after parsing. To increase the information content, I selected for documents that had greater than or equal to 5 words and, to control for unbalanced classes, I also sub-selected for a smaller subset of documents. This resulted in significantly smaller subset of the original data. The final distribution of the documents looks like this: 
+![]({{site.baseurl}}/images/DocumentCountFinal.pdf)
 
-The number of unique words in the combined text was quite large, totaling >300,000. To reduce the feature complexity (which helped increase computational performance  
+Following sub-selection, I employed the sci-kit learn functions to split the remaining documents into a 75% training and 25% test set; the test set were never touched by the algorithm until testing. I used the sklearn CountVectorizer function to tokenize the document strings, remove stop words and count the word frequencies. I used the TfidfTransformer function to normalize the word counts across the different categories. 
 
 The documents had a combined word vocabulary totaling ~ 300,000 word. To reduce the feature complexity (for increasing computational performance, and accuracy), I performed Chi Squared tests on the word matrix to select the k-best most statistically significant words. I then used the transformed data set to train a series of models, Stochastic Gradient Descent Support Vector Classifier, Naïve Bayes and random forest. For each class of model I varied either the regularization parameter or the number of trees (in the case of the random forest). I used the sklearn pipeline objects to facilitate rapid training and cross validation of the models using a series of hyper-parameters. For this I used 10 fold cross validation. 
 
 The models performed similarly, with the random forest classifier having a 62.5 % , which was 7.4 x more accurate than expected compared to random chance of 7.01% (I estimated this by shuffling labels 1000 times).
+
+As can be seen from the confusion matrix below, the classifier did quite well on the majority of the website categories, performing especially well on the 

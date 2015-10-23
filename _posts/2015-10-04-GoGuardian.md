@@ -49,17 +49,17 @@ As can be seen from the confusion matrix below, the classifier did quite well on
 
 ![]({{site.baseurl}}/images/RandomForestConfusionMatrix-10-2-2015.pdf)
 
-I also wanted to get a more concrete feel for how the classifier performed on the different categories by visualizing the data in different ways.  Below is a bar plot showing the performance by category; the dark blue bars represent prediction by chance (random assortment) whereas the light blue bars are the prediction accuracy for the classifier. Note that in most cases the classsifier really beats random chance. 
+I also wanted to get a more concrete feel for how the classifier performed on the different categories by visualizing the data in different ways.  Below is a bar plot showing the performance by category; the dark blue bars represent prediction by chance (random assortment), whereas the light blue bars are the prediction accuracy for the classifier. Note that in most cases the classifier really beats random chance. 
 
 ![]({{site.baseurl}}//images/RandomForestAccuracyPlot-10-2-2015.pdf)
 
 ## Looking at the how students explore the web via the lens of the Classifier. 
 
-GoGuardian provided me with a subsample of the student data for 600 students over a 2 week period. This data set included an numeric identifier for each student, a url, a time stamp, and  time intervals. I wanted to use the classifer to do some some quick exploration of the student data. I downloaded the host urls (~14,000), scraped them and classified them using the random forest. Using the power of pandas, I assigned these website classes to each entry in the student data data frame and computed the amount of time each student spent on each web category. Here is boxplot showing the amount of time the students spend on each web site category as predicted by the classifier. 
+GoGuardian provided me with a subsample of the student data for 600 students over a 2-week period. This data set included an numeric identifier for each student, a url, a time stamp, and time intervals. I wanted to use the classifier to do some quick exploration of the student data. I downloaded the host urls (~14,000), scraped them and classified them using the random forest. Using the power of pandas, I assigned these website classes to each entry in the student dataframe and computed the amount of time each student spent on each web category. Here is boxplot showing the amount of time the students spend on each web site category as predicted by the classifier.
 
 ![]({{site.baseurl}}/images/ForestStudentBoxplot-10-4-2015.pdf)
 
-Not suprisingly, the students like to spend most of their time at social and shopping sites. It appears that GoGuardian is doing a great job at preventing students from going to unwanted sites. 
+Not surprisingly, the students like to spend most of their time at social and shopping sites. It appears that GoGuardian is doing a great job at preventing students from going to unwanted sites. 
 
 ## To do: 
 During my time at insight, I trained a series of classifiers that perform well. However, by increasing the amount of data and adding richer features, I should be able to improve the performance. Following, the conclusion of Insight, I hope to return to this project to help GoGuardian develop even better classifiers. 

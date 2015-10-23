@@ -36,7 +36,7 @@ Using [SQL Alchemy](http://www.sqlalchemy.org), I inserted the scraped text alon
  
 #### Training the Machine Learning algorithms. 
 
-I employed pandas to access and manipulate the downloaded text strings. Plotting the distribution of the word length indicated that many of downloaded documents had fewer than 5 words after parsing. To increase the information content, I selected for documents that had greater than or equal to 5 words and, to control for unbalanced classes, I also sub-selected for a smaller subset of documents. This resulted in significantly smaller subset of the original data. The final distribution of the documents looks like this: 
+I employed [pandas](http://pandas.pydata.org) to access and manipulate the downloaded text strings. Plotting the distribution of the word length indicated that many of downloaded documents had fewer than 5 words after parsing. To increase the information content, I selected for documents that had greater than or equal to 5 words and, to control for unbalanced classes, I also sub-selected for a smaller subset of documents. This resulted in significantly smaller subset of the original data. The final distribution of the documents looks like this: 
 ![]({{site.baseurl}}/images/DocumentCountFinal.pdf)
 
 Following sub-selection, I employed the sci-kit learn functions to split the remaining documents into a 75% training and 25% test set; the test set were never touched by the algorithm until testing. I used the sklearn CountVectorizer function to tokenize the document strings, remove stop words and count the word frequencies. I used the TfidfTransformer function to normalize the word counts across the different categories. 
@@ -45,4 +45,21 @@ The documents had a combined word vocabulary totaling ~ 300,000 word. To reduce 
 
 The models performed similarly, with the random forest classifier having a 62.5 % , which was 7.4 x more accurate than expected compared to random chance of 7.01% (I estimated this by shuffling labels 1000 times).
 
-As can be seen from the confusion matrix below, the classifier did quite well on the majority of the website categories, performing especially well on the 
+As can be seen from the confusion matrix below, the classifier did quite well on the majority of the website categories, performing especially well on the Business and Traveling categories, but less well on Time Wasting and Sexual. The differences in performance most likely reflect the distribution of the article content. 
+
+![]({{site.baseurl}}/images/RandomForestConfusionMatrix-10-2-2015.pdf)
+
+I also wanted to get a more concrete feel for how the classifier performed on the different categories by visualizing the data in different ways.  Below is a bar plot showing the performance by category; the dark blue bars represent prediction by chance (random assortment) whereas the light blue bars are the prediction accuracy for the classifier. Note that in most cases the classsifier really beats random chance. 
+
+![]({{site.baseurl}}//images/RandomForestAccuracyPlot-10-2-2015.pdf)
+
+## Looking at the how students explore the web via the lens of the Classifier. 
+
+GoGuardian provided me with a subsample of the student data for 600 students over a 2 week period. This data set included an numeric identifier for each student, a url, a time stamp, and  time intervals. I wanted to use the classifer to do some some quick exploration of the student data. I downloaded the host urls (~14,000), scraped them and classified them using the random forest. Using the power of pandas, I assigned these website classes to each entry in the student data data frame and computed the amount of time each student spent on each web category. Here is boxplot showing the amount of time the students spend on each web site category as predicted by the classifier. 
+
+![]({{site.baseurl}}/images/ForestStudentBoxplot-10-4-2015.pdf)
+
+Not suprisingly, the students like to spend most of their time at social and shopping sites. It appears that GoGuardian is doing a great job at preventing students from going to unwanted sites. 
+
+## To do: 
+During my time at insight, I trained a series of classifiers that perform well. However, by increasing the amount of data and adding richer features, I should be able to improve the performance. Following, the conclusion of Insight, I hope to return to this project to help GoGuardian develop even better classifiers. 

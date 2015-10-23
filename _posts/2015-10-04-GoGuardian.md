@@ -44,7 +44,7 @@ As can be seen from the confusion matrix below, the classifier did quite well on
 
 I also wanted to get a more concrete feel for how the classifier performed on the different categories by visualizing the data in different ways.  Below is a bar plot showing the performance by category; the dark blue bars represent prediction by chance (random assortment), whereas the light blue bars are the prediction accuracy for the classifier. Note that in most cases the classifier really beats random chance. 
 
-![]({{site.baseurl}}//images/RandomForestAccuracyPlot-10-2-2015.pdf)
+![]({{site.baseurl}}/images/RandomForestAccuracyPlot-10-2-2015.pdf)
 
 ## Looking at the how students explore the web via the lens of the Classifier. 
 
